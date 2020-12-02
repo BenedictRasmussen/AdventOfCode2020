@@ -1,13 +1,10 @@
 package adventofcode
 
 import utils.FILEPATH
-import utils.NoSolutionException
 import java.io.File
 
 fun main(args: Array<String>) {
-    val filename = FILEPATH + "day1-1"
-
-    val input = File(filename)
+    val input = File(FILEPATH + "day1-1")
             .readLines()
             .map { it.toInt() }
             .toHashSet()
@@ -16,21 +13,19 @@ fun main(args: Array<String>) {
         input.forEach { curr ->
             val intRequired = targetSum - curr
             if (input.contains(intRequired)) {
-                return@myLittleLambda curr * intRequired
+                return@myLittleLambda curr * intRequired // Returns the outer lambda
             }
         }
-        null
+        null // Return null for no results
     }
 
-    val solution1: Int? = solver(input, 2020)
-
-    println("Day1-1 solution: $solution1")
+    println("Day1-1 solution: $solver(input, 2020)")
 
     input.forEach { curr ->
         val match = solver(input, 2020 - curr)
         if (match != null) {
             println("Day1-2 solution: ${match * curr}")
-            return
+            return // Returns main
         }
     }
 }
