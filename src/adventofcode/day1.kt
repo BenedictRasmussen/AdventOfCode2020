@@ -1,11 +1,9 @@
 package adventofcode
 
-import utils.FILEPATH
-import java.io.File
+import utils.Utilities
 
 fun main(args: Array<String>) {
-    val input = File(FILEPATH + "day1-1")
-            .readLines()
+    val input = Utilities.readInput("day1-1")
             .map { it.toInt() }
             .toHashSet()
 
@@ -19,7 +17,7 @@ fun main(args: Array<String>) {
         null // Return null for no results
     }
 
-    println("Day1-1 solution: $solver(input, 2020)")
+    println("Day1-1 solution: ${solver(input, 2020)}")
 
     input.forEach { curr ->
         val match = solver(input, 2020 - curr)
