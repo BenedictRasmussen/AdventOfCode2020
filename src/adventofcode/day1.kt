@@ -3,7 +3,7 @@ package adventofcode
 import utils.Utilities
 
 fun main(args: Array<String>) {
-    val input = Utilities.readInput("day1-1")
+    val input = Utilities.readInput("day1")
             .map { it.toInt() }
             .toHashSet()
 

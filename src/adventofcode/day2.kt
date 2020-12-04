@@ -6,7 +6,7 @@ import utils.Utilities
 fun main(args: Array<String>) {
     var oldPolicyCompliantCount = 0
     var newPolicyCompliantCount = 0
-    val iterator = Utilities.readInput("day2-1").iterator()
+    val iterator = Utilities.readInput("day2").iterator()
     while (iterator.hasNext()) {
         val split = iterator.next().split(" ") // Next line
         val bounds = split[0].split("-").map { it.toInt() }
