@@ -1,8 +1,12 @@
 package adventofcode
 
+import utils.Utilities
+
 
 fun main(args: Array<String>) {
-    
+    val input = Utilities.readInput("day5")
+    val boardingPasses = input.map{ BoardingPass(it) }
+    println("Largest seat ID: ${boardingPasses.maxOf { it.getSeatId() }}")
 }
 
 class BoardingPass(private val boardingPass: String) {
@@ -10,14 +14,9 @@ class BoardingPass(private val boardingPass: String) {
     internal var row = -1
     internal var column = -1
 
-    fun findRow(): Int {
-        row = findIndex(127, 0, 6, 'B')
-        return row
-    }
-
-    fun findColumn(): Int {
-        column = findIndex(7, 7, 9, 'R')
-        return column
+    init {
+        this.row = findIndex(127, 0, 6, 'B')
+        this.column = findIndex(7, 7, 9, 'R')
     }
 
     private fun findIndex(numSeats: Int, startPosition:Int, endPosition:Int, upperChar: Char): Int {
@@ -27,7 +26,6 @@ class BoardingPass(private val boardingPass: String) {
         for (index in startPosition..endPosition) {
             val char = this.boardingPass[index]
             val newPos = (lowIndex + highIndex) / 2
-            println("char: $char (upperChar: $upperChar), lowIndex: $lowIndex, highIndex: $highIndex")
             if (char == upperChar) {
                 lowIndex = newPos
             } else {
