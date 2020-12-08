@@ -1,5 +1,6 @@
 package adventofcode
 
+import utils.isNotEmptyOrBlank
 import utils.Utilities
 
 /*
@@ -13,8 +14,6 @@ enum class PassportValues(val key: String) {
 enum class EyeColor(val color: String) {
     AMB("amb"), BLU("blu"), BRN("brn"), GRY("gry"), GRN("grn"), HZL("hzl"), OTH("oth")
 }
-
-fun String.isNotEmptyOrBlank(): Boolean = this != null && this.isNotBlank()
 
 data class Passport(val birthYear: Int,  val issueYear: Int,  val exprYear: Int, val height: String,
                     val hairColor: String, val eyeColor: String, val passportId: String) {
