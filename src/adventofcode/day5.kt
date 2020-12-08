@@ -2,11 +2,16 @@ package adventofcode
 
 import utils.Utilities
 
-
 fun main(args: Array<String>) {
     val input = Utilities.readInput("day5")
-    val boardingPasses = input.map{ BoardingPass(it) }
+    val boardingPasses = input.map{ BoardingPass(it) }.sortedBy { it.getSeatId() }
     println("Largest seat ID: ${boardingPasses.maxOf { it.getSeatId() }}")
+
+    for (i in 0 until boardingPasses.size - 1) {
+        if (boardingPasses[i+1].getSeatId() == boardingPasses[i].getSeatId() + 2) {
+            println("Santa's seat: ${boardingPasses[i].getSeatId() + 1}")
+        }
+    }
 }
 
 class BoardingPass(private val boardingPass: String) {
@@ -24,9 +29,8 @@ class BoardingPass(private val boardingPass: String) {
         var highIndex = numSeats
 
         for (index in startPosition..endPosition) {
-            val char = this.boardingPass[index]
             val newPos = (lowIndex + highIndex) / 2
-            if (char == upperChar) {
+            if (this.boardingPass[index] == upperChar) {
                 lowIndex = newPos
             } else {
                 highIndex = newPos
